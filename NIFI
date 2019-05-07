@@ -1,0 +1,23 @@
+NIFI 1.0.0 cloudera 5.16
+
+https://www.cloudera.com/downloads/cdf.html
+
+Comes as Cloudera Data Flow (CDF)
+	Cloudera Flow Management (Release Notes)
+	Edge Data Management (Release Notes)
+	
+
+parcels are not available currently for redhat os
+
+Instaallation via CSD
+
+ssh util11i
+
+
+cd /opt/cloudera/csd/
+wget http://archive.cloudera.com/CFM/csd/1.0.0.0/NIFICA-1.9.0.1.0.0.0-90.jar
+wget  http://archive.cloudera.com/CFM/csd/1.0.0.0/NIFIREGISTRY-0.3.0.1.0.0.0-90.jar
+wget http://archive.cloudera.com/CFM/csd/1.0.0.0/NIFI-1.9.0.1.0.0.0-90.jar
+
+chmod -R 644 ../csd/
+chown -R cloudera-scm:cloudera-scm ../csd/
