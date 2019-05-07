@@ -1,0 +1,18 @@
+figlet for 
+  ____ ____  _   _    ____  _______     __   _____ _   ___     __
+ / ___|  _ \| | | |  |  _ \| ____\ \   / /  | ____| \ | \ \   / /
+| |   | | | | |_| |  | | | |  _|  \ \ / /   |  _| |  \| |\ \ / /
+| |___| |_| |  _  |  | |_| | |___  \ V /    | |___| |\  | \ V /
+ \____|____/|_| |_|  |____/|_____|  \_/     |_____|_| \_|  \_/
+
+download tar
+untar
+install gcc
+cd to untar figlet
+cp font dir to /usr/local/share/figlet
+cp figlet /usr/local/bin      (used for programs and data that are shareable amongst a group of hosts, but not found in /usr)
+
+to run at user login
+echo on user .bash_profile (.bash_profile is executed for login shells, while .bashrc is executed for interactive non-login shells)
+banner "to be shown at login"
+figlet banner
