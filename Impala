@@ -1,3 +1,7 @@
+Docs:
+   1 https://conferences.oreilly.com/strata/strata-ca-2018/public/schedule/detail/64169
+     https://cdn.oreillystatic.com/en/assets/1/event/269/How%20to%20use%20Impala_s%20query%20plan%20and%20profile%20to%20fix%20performance%20issues%20Presentation.pdf
+
 Issues:
 1. ERROR: Rejected query request memory estimate 168.00 MB, greater than pool limit 100.00 MB 
     http://www.openkb.info/2014/07/impala-admission-control.html
