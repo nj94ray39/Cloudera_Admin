@@ -1,0 +1,24 @@
+# Time marker for both stderr and stdout
+http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html
+date; date 1>&2
+
+# spit out Positional Parameters.
+https://stackoverflow.com/questions/29258603/what-do-0-1-2-mean-in-shell-script/29258644
+cloudera_config=`dirname $0`
+
+# the arguments '-v' and '-x' mean to bash
+https://unix.stackexchange.com/questions/124272/what-do-the-arguments-v-and-x-mean-to-bash
+https://www.gnu.org/software/bash/manual/html_node/Modifying-Shell-Behavior.html
+set -x
+
+# Exit immediately
+https://stackoverflow.com/questions/9886027/bash-one-line-conditional-fails-when-using-set-e
+set -e
+
+
+
+
+
+
+#####################################     KB      #####################################
+http://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions
