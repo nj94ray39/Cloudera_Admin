@@ -15,8 +15,11 @@ set -x
 https://stackoverflow.com/questions/9886027/bash-one-line-conditional-fails-when-using-set-e
 set -e
 
+/dev/null is treated as black hole in Linux/Unix
 
-
+# redirects output 
+https://askubuntu.com/questions/350208/what-does-2-dev-null-mean
+2>/dev/null
 
 
 
