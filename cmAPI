@@ -1,0 +1,16 @@
+CM api
+
+deactivate parcles
+curl -u user:pass -X POST "https://util11i.uat-util.cdh.fordata.syd.non.c1.macquarie.com:7183/api/v10/clusters/myCluster/parcels/products/SPARK2/versions/2.3.0.cloudera4-1.cdh5.13.3.p0.611179/commands/deactivate" 
+
+listing clusters
+curl -u 'njangave:nihal@123' "https://util11i.dev-util.cdh.fordata.syd.non.c1.macquarie.com:7183/api/v7/clusters"
+
+Basic Authentication with Cookies
+Cookies may be used to allow subsequent requests to access the API without requiring the username
+ 
+
+Authenticate and write the response cookie to a file.  Example:
+$ curl -u 'njangave:nihal@123' "https://util11i.uat-util.cdh.fordata.syd.non.c1.macquarie.com:7183/api/v19/cm/deployment"
+Using a cookie for authentication in subsequent requests
+$ curl -b cookie.txt "https://util11i.dev-util.cdh.fordata.syd.non.c1.macquarie.com:7183/api/v7/clusters"
