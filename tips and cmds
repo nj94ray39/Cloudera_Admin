@@ -1,0 +1,23 @@
+find the OPENFORWRITE files close and make it avilabele for all
+1. Stop all applications writing to HDFS.
+2. Locate the files stuck in OPENFORWRITE:
+hdfs fsck -files -blocks -locations -openforwrite | grep OPENFORWRITE
+3. Review the above output: Note that it may be normal for some files to be in OPENFORWRITE up to 1 hour after they have been written to. If after 1 hour nothing is writing to HDFS and the file is still in OPENFORWRITE state, the instructions below should be followed. 
+4. Create a temporary working directory: 
+hdfs dfs -mkdir /tmp_working_dir_pivotal/
+5. For each file that is stuck in OPENFORWRITE:
+a) Move the file to the temp directory: 
+hdfs dfs -mv /PATH_TO_FILE/STUCK/IN/OPENFORWRITE /tmp_working_dir_pivotal/
+b) COPY the file back to the original location. This will force a new inode to be created and will clear up the OPENFORWRITE state:
+hdfs dfs -cp /tmp_working_dir_pivotal/<filename/ /PATH_TO_FILE_STUCK/IN/OPENFORWRITE/
+c) Once you have confirmed that the file is working correctly, remove the files in /tmp_working_dir_pivotal/.
+
+Use the following steps to find the number of files with replication equal to or above your current cluster size:
+1. Provide a listing of open files, their blocks, the locations of those blocks.
+2. You can reuse the output from a previous fsck for this solution.
+hadoop fsck / -files -blocks -locations -openforwrite 2>&1 > openfiles.out
+3. The following command will give a list of how many files have a given replication factor:
+grep repl= openfiles.out | awk '{print $NF}' | sort | uniq -c
+4. Using the example of 10 nodes, and decommissioning one:
+egrep -B4 "repl=10" openfiles.out | grep -v '<dir>' | awk '/^\//{print $1}'
+5. Examine the paths, and decide whether to reduce the replication factor of the files, or remove them from the cluster.
