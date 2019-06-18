@@ -1,0 +1,33 @@
+#!/bin/bash
+  
+fqdn=$(hostname -f)
+kinit -kt /var/run/cloudera-scm-agent/process/`ls -lrt /var/run/cloudera-scm-agent/process/ | awk '{print $9}' |grep DATANODE | tail -1`/hdfs.keytab hdfs/$fqdn@REALM
+usage="Usage: ./list-old-hdfs-files.sh [path] [days]"
+path=/user/history/done_intermediate/*/*.*
+if [ ! "$1" ]
+then
+  echo $usage;
+  exit 1;
+fi
+
+if [ ! "$2" ]
+then
+  echo $usage;
+  exit 1;
+fi
+
+now=$(date +%s);
+
+# Loop through files
+sudo -u hdfs hdfs dfs -ls $1 | while read f; do
+# Get File Date and File Name
+file_date=`echo $f | awk '{print $6}'`;
+file_name=`echo $f | awk '{print $8}'`;
+
+# Calculate Days Difference
+difference=$(( ($now - $(date -d "$file_date" +%s)) / (24 * 60 * 60) ));
+if [ $difference -gt $2 ]; then
+# Insert delete logic here
+    echo "This file $file_name is dated $file_date.";
+fi
+done
