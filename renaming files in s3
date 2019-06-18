@@ -1,0 +1,16 @@
+#!/bin/sh
+set -x
+cd /tmp
+>files
+count=$(aws s3 ls s3://core-network-prod-syd-s3-s3bucket-p47nd25rzujj/private/fordata/cdh/uat-fs/1/s3/cdh/splunk/ | grep "tmp" | awk '{print $NF}' | cut -f4 -d'.' | wc -l)
+aws s3 ls s3://core-network-prod-syd-s3-s3bucket-p47nd25rzujj/private/fordata/cdh/uat-fs/1/s3/cdh/splunk/ | grep "tmp" | awk '{print $NF}' | cut -f4 -d'.' > files
+echo $count
+
+# it will rename the files in the s3 path tmp extention
+while IFS=, read -r input1; do
+    # do stuff with "$input1" and "$input2"
+        echo $input1
+        aws s3 mv s3://core-network-prod-syd-s3-s3bucket-p47nd25rzujj/private/fordata/cdh/uat-fs/1/s3/cdh/splunk/trade.flume.c1.$input1.xml.tmp s3://core-network-prod-syd-s3-s3bucket-p47nd25rzujj/private/fordata/cdh/uat-fs/1/s3/cdh/splunk/trade.flume.c1.$input1.xml
+done <files
+rm /tmp/files
+echo "Done..."
