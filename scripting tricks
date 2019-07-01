@@ -21,7 +21,8 @@ set -e
 https://askubuntu.com/questions/350208/what-does-2-dev-null-mean
 2>/dev/null
 
-
+#give users chrooted SSH access
+https://www.howtoforge.com/chroot_ssh_sftp_debian_etch
 
 #####################################     KB      #####################################
 http://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions
