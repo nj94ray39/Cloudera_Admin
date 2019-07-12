@@ -10,3 +10,22 @@ data sources/feeds : Reuters, Bloomberg, Swaps, IDC and ASX throught sftp/ftp th
 Radix is a high-throughput platform to build and distribute decentralized applications
 CouchDB 1.2 .Net 4.5.2 MQ Windows 2008 
 
+Rds
+Data:
+Interest Rates
+Forwards(Index,Fx..)
+Margins(Fx,NDF...)
+Commodities
+Futures
+Historic Rates
+Bonds
+Loans
+Swaps
+Repos
+Forward Rate Agreements
+Floating Rate Notes
+Credit Default Swaps
+Securitised indexes
+Credit
+Correlations
+Volatilities
