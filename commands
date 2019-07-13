@@ -1,0 +1,58 @@
+#clear iptables
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -t nat -F
+iptables -t mangle -F
+iptables -F
+iptables -X
+
+#stop firewall
+ systemctl stop firewalld 
+ systemctl disable firewalld
+ 
+ #restart host
+ # init 6
+ 
+#disk free
+df /dev/nvme2n1
+
+#find ps
+ps -eaf | grep docker
+
+#resolv.conf
+/etc/resolv.conf
+ why dnsmasq needs to be run on the node:we use it to establish reverse lookups in the cluster.
+if you are trying to setup wildcard DNS with dnsmasq, too?
+
+#tcpdump
+mostpowerfull and widely used tool
+tcpdump -i weave -w /tmp/cdsw_weave.pcap
+
+
+22222222222222222222222222222          #docker commads       2222222222222222222222222222222
+
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+systemctl status docker
+
+
+4444444444444444444444444444      kubernetes          44444444444444444444444444444444
+   https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
+
+3333333333333333333333333333c         cloudera commands         3333333333333333333333333333333333333
+
+#prepare nodes
+CM > CDSW > Master > Actions > Prepare Node
+
+
+#tar up log files
+tar cvzf /tmp/$(hostname -f)_cdsw_proc.tgz  /var/run/cloudera-scm-agent/process/*-cdsw-CDSW_*/logs/
+
+#coloumn level access
+    a> SHOW CREATE TABLE <VIEW-NAME>
+    b> show role grant group <group-name>
+    c> show grant role <role-name>
+    d> hadoop fs -getfacl <path/to/table>
+    e> show create table <table-name>, (table-name is that table on which View has been built)
