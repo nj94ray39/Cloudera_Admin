@@ -1,0 +1,13 @@
+##############    Requirements and Supported Platforms     #############
+
+1. Cloudera Manager and CDH Requirements
+2. Operating System Requirements
+3. JDK Requirements
+4. Networking and Security Requirements
+5. Recommended Hardware Configuration
+6. Python Supported Versions
+7. Docker and Kubernetes Support
+8. Supported Browsers
+9. Cloudera Altus Director Support (AWS and Azure Only)
+10. Recommended Configuration on Amazon Web Services (AWS)
+11. Recommended Configuration on Microsoft Azure
