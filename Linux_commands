@@ -1,0 +1,11 @@
+FYI
+
+```
+
+How to check fingerprint of two host are equal or not
+
+curl -k https://mapls393.bci.abc.com:11371/?a=fingerprint
+
+curl -k https://mapls394.bci.abc.com:11371/?a=fingerprint
+
+```
