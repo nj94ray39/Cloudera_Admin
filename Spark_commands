@@ -17,3 +17,10 @@ logs would be dumping at hdfs:///user/spark/eventlog
 make it true and set the location, you will find the logs then
 
 ```
+```
+
+spark.history.fs.cleaner.enabled= false/true
+
+Specifies whether the History Server should periodically clean up event logs from storage.
+
+```
