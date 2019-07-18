@@ -1,0 +1,7 @@
+```
+
+To Check how many Live Tablets are present in cluster
+
+for i in $(kudu tserver list mn4s31274.nmdp.org,mn4s31275.nmdp.org,mn4s31276.nmdp.org | awk -F "|" '{print $2}' | awk -F ":" '{print $1}' | sed 's/rpc-addresses//g' | sort); do echo "$i"; curl -s curl -k https://$i:8050/tablets | grep -A 10 "Live Tablets" | grep Total | sed "s/[^0-9]//g"; done;
+
+```
