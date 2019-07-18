@@ -1,0 +1,77 @@
+kafka-topics --create --zookeeper 172.18.114.95:2181 --config compression.type=gzip --replication-factor 2 --partitions 8 --topic cTowerIncrementAllLegs
+
+kafka-console-consumer --zookeeper 172.18.114.95:2181 --topic cTowerIncrementAllLegs --property print.key=true --property key.separator="-" --from-beginning --partition cTowerIncrementAllLegs-1
+
+kafka-console-consumer --bootstrap-server 172.18.114.95:9092 --topic cTowerIncrementAllLegs --partition 1 : "BDDATA.SHIPFLTMST"
+
+kafka-console-consumer --bootstrap-server 172.18.114.95:9092 --topic cTowerIncrementAllLegs --partition 2 : "BDDATA.DELSHEET"
+
+kafka-console-consumer --bootstrap-server 172.18.114.95:9092 --topic cTowerIncrementAllLegs --partition 3 : "BDDATA.OUTBOUNDSTATUSREMARK"
+
+kafka-console-consumer --bootstrap-server 172.18.114.95:9092 --topic cTowerIncrementAllLegs --partition 4 : "BDDATA.AWBMST"
+
+kafka-console-consumer --bootstrap-server 172.18.114.95:9092 --topic cTowerIncrementAllLegs --partition 7 : "BDDATA.INBOUNDSTATUSREMARK"
+
+==============
+
+Print Offset:
+
+kafka-run-class kafka.tools.GetOffsetShell --broker-list 172.18.114.95:9092 --topic cTowerIncrementAllLegs --time -1 --offsets 1 | awk -F ":" '{sum += $3} END {print sum}'
+
+==============
+
+kafka-topics --create --zookeeper 172.18.114.95:2181 --replication-factor 2 --partitions 4 --topic c2pcMaster
+
+kafka-console-producer.sh --broker-list 172.18.114.95:9092 --topic testTopicWithNullKey
+
+kafka-console-consumer --zookeeper 172.18.114.95:2181 --topic testTopicWithNullKey --property print.key=true --property key.separator="-" --from-beginning --partition cTowerIncrementAllLegs-1
+
+kafka-topics --create --zookeeper 172.18.114.95:2181 --config compression.type=gzip --replication-factor 2 --partitions 24 --topic c2pcMaster
+
+kafka-console-consumer --zookeeper 172.18.114.95:2181 --topic bdIncrementalAllLegs --property print.key=true --property key.separator="-" --from-beginning
+
+kafka-topics --create --zookeeper 172.18.114.95:2181 --config compression.type=gzip --replication-factor 2 --partitions 24 --topic partitionExperiment
+
+kafka-topics --create --zookeeper 172.18.114.95:2181 --config compression.type=gzip --replication-factor 2 --partitions 24 --topic bdIncrementalAllLegs
+
+kafka-console-consumer --zookeeper 172.18.114.95:2181 --topic bdIncrementalAllLegs --property print.key=true --from-beginning
+
+kafka-console-consumer --zookeeper 172.18.114.97:2181 --topic myTopic --property print.key=true --from-beginning
+
+kafka-console-producer --broker-list 172.18.114.80:9092 --topic myTest
+
+kafka-console-consumer --zookeeper 172.18.114.99:2181 --topic myTest --property print.key=true --from-beginning
+
+kafka-topics --create --zookeeper 172.18.114.95:2181 --config compression.type=gzip --replication-factor 2 --partitions 9 --topic c2pcMaster
+
+kafka-topics --delete  --zookeeper 172.18.114.95:2181  --topic c2pcMaster
+
+kafka-topics --list --zookeeper 172.18.114.95:2181
+
+cd /dfs/local/kafka/data/
+
+kafka-console-consumer --zookeeper 172.18.114.95:2181 --topic cTowerIncrementAllLegs --property print.key=true --property key.separator="-" --from-beginning --partition cTowerIncrementAllLegs-1
+
+==890
+
+partition 0 : ?
+
+partition 1 : "table":"BDDATA.SHIPFLTMST"
+
+partition 2 : "table":"BDDATA.DELSHEET"
+
+partition 3 : "BDDATA.OUTBOUNDSTATUSREMARK"
+
+partition 4 : "BDDATA.AWBMST"
+
+partition 5 : ?
+
+partition 6 : ?
+
+partition 7 : "BDDATA.INBOUNDSTATUSREMARK"
+
+================
+
+226678890
+
+kafka-run-class kafka.tools.GetOffsetShell --broker-list 172.18.114.95:9092,172.18.114.98:9092,172.18.114.91:9092 --topic bdIncrementalAllLegs --time -1 --offsets 1 | awk -F ":" '{sum += $3} END {print sum}'  >>  /home/datalake/ajangid/Kafka/Kafka_Messgages.txt
