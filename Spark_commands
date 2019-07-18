@@ -1,0 +1,19 @@
+```
+
+spark-defaults.conf
+
+spark.eventLog.enabled    true(by default)
+
+spark.eventLog.dir        hdfs:///user/spark/eventlog
+
+# Set spark executor memory
+
+spark.executor.memory     2g
+
+spark.logConf             true
+
+logs would be dumping at hdfs:///user/spark/eventlog
+
+make it true and set the location, you will find the logs then
+
+```
