@@ -1,0 +1,47 @@
+Install MySQL server. From a terminal window, type:
+
+For RHEL/CentOS:
+
+yum install mysql-server
+
+Start the instance.
+
+/etc/init.d/mysqld start
+
+Set the root user password.
+
+mysqladmin -u root -p‘{password}’ password $mysqlpassword
+
+Remove unnecessary information from log and STDOUT.
+
+mysqladmin -u root 2>&1 >/dev/null
+
+As root, use mysql (or other client tool) to create the “dbuser” and grant it adequate privileges. This user provides access to the Hive metastore.
+
+CREATE USER '$dbusername'@'localhost' IDENTIFIED BY '$dbuserpassword';
+
+GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'localhost';
+
+CREATE USER 'dbuser'@'%' IDENTIFIED BY 'dbuserpassword';
+
+GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'%';
+
+FLUSH PRIVILEGES;
+
+See if you can connect to the database as that user. You are prompted to enter the $dbuserpassword password above.
+
+mysql -u dbuser -p $dbuserpassword
+
+Install the MySQL connector JAR file.
+
+For RHEL/CentOS/Oracle Linux:
+
+yum install mysql-connector-java*
+
+For SLES:
+
+zypper install mysql-connector-java*
+
+For Ubuntu:
+
+apt-get install mysql-connector-java*
