@@ -1,0 +1,7 @@
+The block count increase could be large small files created. I would check the fsimage file content
+
+### Check the fsimage file count
+
+$ hdfs dfsadmin -fetchImage fsimg
+$ hdfs oiv -i fsimg -o fsout -p Delimited
+$ cat fsout |cut -f1|cut -f1,2,3,4 -d’/’|sort |uniq -c|sort -n|tail -n20
