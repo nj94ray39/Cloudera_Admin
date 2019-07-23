@@ -5,3 +5,10 @@ The block count increase could be large small files created. I would check the f
 $ hdfs dfsadmin -fetchImage fsimg
 $ hdfs oiv -i fsimg -o fsout -p Delimited
 $ cat fsout |cut -f1|cut -f1,2,3,4 -d’/’|sort |uniq -c|sort -n|tail -n20
+
+
+It is possible to use distcp with an override of the block size from command line. Please see example below:
+$ hadoop distcp -Ddfs.blocksize=$[256*1024*1024] -skipcrccheck -update /tmp/dir1 /tmp/dir2
+Files in /tmp/dir1 will be copied to /tmp/dir2 with a block size of 256MB. You can use command below to confirm: 
+$ hdfs dfs -stat %o /tmp/dir2/filex
+Note: distcp command does cause a temporary doubling of the storage consumed
