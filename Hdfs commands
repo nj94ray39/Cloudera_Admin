@@ -12,3 +12,7 @@ $ hadoop distcp -Ddfs.blocksize=$[256*1024*1024] -skipcrccheck -update /tmp/dir1
 Files in /tmp/dir1 will be copied to /tmp/dir2 with a block size of 256MB. You can use command below to confirm: 
 $ hdfs dfs -stat %o /tmp/dir2/filex
 Note: distcp command does cause a temporary doubling of the storage consumed
+
+
+HDFS Short-Circuit Local Reads
+https://hadoop.apache.org/docs/r2.7.1/hadoop-project-dist/hadoop-hdfs/ShortCircuitLocalReads.html
