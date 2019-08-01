@@ -25,3 +25,61 @@ wget http://archive.cloudera.com/CFM/csd/1.0.0.0/NIFI-1.9.0.1.0.0.0-90.jar
 
 chmod -R 644 ../csd/
 chown -R cloudera-scm:cloudera-scm ../csd/
+
+########################################################################################################################################################################################
+
+NIFI PORTS
+
+Short Description:
+
+This article is to assist those who install NiFi using local repos and required to call out ports to be opened for the security teams
+
+Article
+
+I find those who install NiFi via ambari using local repos are generally required for security proposes to call out ports to be opened. Typical on cloud environments. I plan update this list this with community feedback to keep this list fresh. These ports are not set in stone. NiFi ports are configure by simply changing the port in the properties file. Lets get to it:
+
+Ambari
+
+8080
+
+Zookeeper
+
+2181
+
+Protocol port
+
+9088
+
+HTTP port (ssl)
+
+9091
+
+HTTP port (non-ssl)
+
+9090
+
+Certificate Authority
+
+10443
+
+nifi.remote.input.socket.port
+
+8022
+
+nifi.cluster.node.protocol.port
+
+8021
+
+Remote Process Group
+
+Raw
+
+8022
+
+HTTP
+
+8070
+
+nifi.remote.input.socket.port
+
+9999
