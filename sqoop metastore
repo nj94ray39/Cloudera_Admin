@@ -9,3 +9,97 @@ used for incremental sqoop
 create sqoop job
 
 commands:
+
+########################################################################################################################
+
+Sqoop Metastore on mysql
+
+Short Description:
+
+How to setup mysql DB as SQOOP metastore for the SQOOP jobs.
+
+Article
+
+Using SQOOP with MySQL as metastore
+
+To set up MySQL for use with SQOOP:
+
+On the SQOOP Server host, install the connector.
+
+Install the connector
+
+RHEL/CentOS/Oracle Linux
+
+  yum install mysql-connector-java
+
+SLES
+
+  zypper install mysql-connector-java
+
+Confirm that .jar is in the Java share directory.
+
+  ls /usr/share/java/mysql-connector-java.jar
+
+Make sure the .jar file has the appropriate permissions - 644.
+
+Create a user for SQOOP and grant it permissions.
+
+For example, using the MySQL database admin utility:
+
+  # mysql -u root -p  
+
+ 
+
+CREATE USER '<SQOOPUSER>'@'%' IDENTIFIED BY '<SQOOPPASSWORD>';  
+
+ 
+
+GRANT ALL PRIVILEGES ON *.* TO '<SQOOPUSER>'@'%';  
+
+ 
+
+CREATE USER '<SQOOPUSER>'@'localhost' IDENTIFIED BY '<SQOOPPASSWORD>';  
+
+ 
+
+GRANT ALL PRIVILEGES ON *.* TO '<SQOOPUSER>'@'localhost';  
+
+ 
+
+CREATE USER '<SQOOPUSER>'@'<SQOOPSERVERFQDN>' IDENTIFIED BY '<SQOOPPASSWORD>';  
+
+ 
+
+GRANT ALL PRIVILEGES ON *.* TO '<SQOOPUSER>'@'<SQOOPSERVERFQDN>';  
+
+ 
+
+FLUSH PRIVILEGES;
+
+Where <SQOOPUSER> is the SQOOP user name, <SQOOPPASSWORD> is the SQOOP user password and <SQOOPSERVERFQDN> is the Fully Qualified Domain Name of the SQOOP Server host.
+
+Configure the sqoop-site.xml to create the sqoop database and load the SQOOP Server database schema.
+
+<configuration>  <property>  <name>sqoop.metastore.client.enable.autoconnect</name>  <value>true</value>  </property>  <property>  <name>sqoop.metastore.client.autoconnect.url</name>  <value>jdbc:mysql://<<MYSQLHOSTNAME>>/sqoop?createDatabaseIfNotExist=true</value>  </property>  <property>  <name>sqoop.metastore.client.autoconnect.username</name>  <value>$$SQOOPUSER$$</value>  </property>  <property>  <name>sqoop.metastore.client.autoconnect.password</name>  <value>$$$SQOOPPASSWORD$$$</value>  </property>  <property>  <name>sqoop.metastore.client.record.password</name>  <value>true</value>  </property>  <property>  <name>sqoop.metastore.server.location</name>  <value>/usr/lib/sqoop/metastore/</value>  </property>  <property>  <name>sqoop.metastore.server.port</name>  <value>16000</value>  </property>  </configuration>
+
+execute the following command to create the initial database and tables.
+
+      sqoop job --list
+
+If you get any error or exception then you must pre-load the SQOOP tables with the mandatory values.
+
+  mysql -u <SQOOPUSER> -p   USE <SQOOPDATABASE>;
+
+  -- Inserted the following row  
+
+ 
+
+INSERT INTO SQOOP_ROOT   VALUES(     NULL,     'sqoop.hsqldb.job.storage.version',     '0'  );
+
+Where <SQOOPUSER> is the SQOOP user name and <SQOOPDATABASE> is the SQOOP database name.
+
+execute the following command one more time, to create the all required SQOOP internal meta tables.
+
+      sqoop job --list
+
+Once all the necessary sqoop tables are created, then sqoop job will use the meta store for the SQOOP job execution.
