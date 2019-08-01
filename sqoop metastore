@@ -1,0 +1,11 @@
+How to set up a Sqoop metastore
+cloudera community
+https://community.pivotal.io/s/article/How-to-set-up-Sqoop-metastore
+
+setup mysql as metastore
+
+used for incremental sqoop
+
+create sqoop job
+
+commands:
