@@ -1,0 +1,9 @@
+aws iam create-user --user-name <abc> --profile challange1-admin
+ref :
+https://docs.aws.amazon.com/cli/latest/reference/iam/create-user.html
+
+aws cloudtrail stop-logging --name <asdasda> --region <us-east-1> --profile <challange1-admin>
+ref :
+https://docs.aws.amazon.com/cli/latest/reference/cloudtrail/stop-logging.html
+
+aws iam list-roles --profile challange1-admin
