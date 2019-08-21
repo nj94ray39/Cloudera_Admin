@@ -75,3 +75,32 @@ partition 7 : "BDDATA.INBOUNDSTATUSREMARK"
 226678890
 
 kafka-run-class kafka.tools.GetOffsetShell --broker-list 172.18.114.95:9092,172.18.114.98:9092,172.18.114.91:9092 --topic bdIncrementalAllLegs --time -1 --offsets 1 | awk -F ":" '{sum += $3} END {print sum}'  >>  /home/datalake/ajangid/Kafka/Kafka_Messgages.txt
+
+##############################££#############################################################################################################################
+
+** This is a known issue ***
+Even in the latest Kafka version (0.9.0), the deletion command below isn't always working.
+
+bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic <topic_name>
+(Note: Topic deletion option is disabled by default. To enable it set the server config)
+
+delete.topic.enable=true
+Bug to track: KAFKA-1397
+
+*** The only way to delete a topic permanently is as follows: ***
+
+stop the brokers
+sudo supervisorctl stop kafka-broker
+remove the directories on disk
+sudo rm -rf <kafka_data_dir>/<topic_name>*
+remove the topic from zookeeper:
+bin/zkCli.sh
+rmr /config/topics/<topic_name>
+rmr /brokers/topics/<topic_name>
+rmr /admin/delete_topics/<topic_name>
+verify the topic directory is deleted in zookeeper:
+ls <path>
+start the brokers back up
+sudo supervisorctl start kafka-broker
+re-create the kafka topic if needed
+bin/kafka-topics.sh --zookeeper ${zookeeper_server} --create --topic $topic --partitions=$pars --replication-factor $rep --config retention.ms=$ret
