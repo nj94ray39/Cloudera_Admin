@@ -1,0 +1,127 @@
+Sqoop Hive import of data in Text format
+Step1. Sqoop import data using command
+
+$ sqoop import  \
+ --connect jdbc:mysql://quickstart:3306/retail_db  \
+ --username root \
+ --password cloudera  \
+ --table order_items \
+ --hive-import \
+ --create-hive-table  \
+ --hive-table tempdb1.orderitemstext \  
+ --fields-terminated-by '|'  \
+ --as-textfile  \
+ --split-by order_item_id ;
+
+*It is possible to use DatabaseName.TableName format while importing data in Text File format
+
+
+
+
+Total 172198 records imported and the size of data is 5.1583 MB in 110.945 Seconds
+
+Step 2.  Run a simple query
+
+hive> select count(*) from orderitemstext;
+
+OK
+172198
+Time taken: 76.332 seconds, Fetched: 1 row(s)
+
+Sqoop Hive import of data in Text format with Snappy Compression
+Step1. Sqoop import data using command
+ $ sqoop import  \
+  --connect jdbc:mysql://quickstart:3306/retail_db  \
+  --username root \
+  --password cloudera  \
+  --table order_items \
+  --hive-import \
+  --create-hive-table \
+  --hive-database tempdb1 \
+  --hive-table orderitemscompresstext \
+  --fields-terminated-by '|'  \
+  --as-textfile  \
+  --split-by order_item_id \
+  --compress \
+  --compression-codec snappy
+﻿
+ 
+﻿
+
+Same 172198 records imported but stored in 1.7894 MB in 123.6498 Seconds
+
+Step 2.  Run a simple query
+
+hive> select count(*) from orderitemscompresstext ;
+
+OK
+172198
+Time taken: 124.106 seconds, Fetched: 1 row(s)
+
+Sqoop Hive import of data in Parquet format
+
+Step1. Sqoop import data using command
+$ sqoop import \
+--connect jdbc:mysql://quickstart:3306/retail_db \
+--username root \
+--password cloudera \
+--table order_items \
+--hive-import \
+--create-hive-table \
+--hive-database tempdb1 \
+--hive-table orderitemsparq \
+--fields-terminated-by '|' \
+--as-parquetfile \
+--split-by order_item_id ;
+
+
+*Using --hive-database as it is not possible to use DatabaseName.TableName format while importing data in Parquet File format
+
+
+
+Same 172198 records imported but stored in 1.61 MB in 248.4702 Seconds
+
+Step 2. Run a simple query
+
+hive> select count(*) from orderitemsparq;
+
+OK
+172198
+Time taken: 93.444 seconds, Fetched: 1 row(s)
+
+Sqoop Hive import of data in Parquet format with Snappy Compression
+
+Step1. Sqoop import data using command
+ $ sqoop import  \
+  --connect jdbc:mysql://quickstart:3306/retail_db  \
+  --username root \
+  --password cloudera  \
+  --table order_items \
+  --hive-import \
+  --create-hive-table \
+  --hive-database tempdb1 \
+  --hive-table orderitemscompressparq \
+  --fields-terminated-by '|'  \
+  --as-parquetfile  \
+  --split-by order_item_id \
+  --compress \
+  --compression-codec snappy
+
+
+Same 172198 records imported and stored in same size 1.61 MB in approx same time 224.9982 Seconds
+
+Step 2. Run a simple query
+
+hive> select count(*) from orderitemsparq;
+
+OK
+172198
+Time taken: 95.478 seconds, Fetched: 1 row(s)
+
+
+
+
+Conclusions -
+Storing data in Parquet format is more space efficient than normal text format and even Snappy Compressed text format.
+As Parquet format and Snappy Compressed Parquet format both have the same size, it can be assumed that Parquet files are already using Snappy Compression algorithms.
+Writing data is time efficient in Text format and reading data is time efficient in Parquet format.
