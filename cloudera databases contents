@@ -1,0 +1,62 @@
+RDS mysql database 
+
+default databases in mysql:
+mysql - is the system database that contains tables that store information required by the MySQL server
+information_schema - provides access to database metadata
+performance_schema - is a feature for monitoring MySQL Server execution at a low level
+sys - a set of objects that helps DBAs and developers interpret data collected by the Performance Schema
+
+database in RDS:
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| amon               |
+| hue                |
+| innodb             |
+| metastore          |
+| mysql              |
+| oozie              |
+| performance_schema |
+| rman               |
+| scm                |
+| sentry             |
+| sys                |
+| tmp                |
++--------------------+
+
++-------------------------------+
+| Tables_in_amon                |
++-------------------------------+
+| CMON_ACTIVITY                 |
+| CMON_ACTIVITY_ATTRIBUTE       |
+| CMON_ACTIVITY_DP              |
+| CMON_ACTIVITY_DP_2019_10_08   |
+| CMON_ACTIVITY_DP_2019_10_09   |
+| CMON_ACT_LMV                  |
+| CMON_ACT_LMV_2019_10_09       |
+| CMON_ACT_LMV_2019_10_10       |
+| CMON_ATTEMPT                  |
+| CMON_ATTEMPT_2019_10_09       |
+| CMON_ATTEMPT_2019_10_10       |
+| CMON_ATT_LMV                  |
+| CMON_ATT_LMV_2019_10_09       |
+| CMON_ATT_LMV_2019_10_10       |
+| CMON_LL_DP                    |
+| CMON_LL_DP_2019_10_08         |
+| CMON_LL_DP_2019_10_09         |
+| CMON_LL_DP_HR                 |
+| CMON_LL_DP_HR_2019_10_08      |
+| CMON_LL_DP_HR_2019_10_09      |
+| CMON_LL_TIME_SERIES_ATTRIBUTE |
+| CMON_LL_TIME_SERIES_ID        |
+| CMON_METRIC_INFO              |
+| CMON_SCHEMA_VERSION           |
+| PARTITION_INFO                |
+| ids_to_delete_1552057140362   |
+| ids_to_delete_1568766720214   |
+| ids_to_delete_1568766742112   |
++-------------------------------+
+
+
+
