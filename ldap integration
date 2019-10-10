@@ -1,0 +1,20 @@
+Configuration steps for Linux LDAP clients
+
+High Level Steps
+
+At a high level, steps required breakdown as follows:
+	1. Install ldap client RPMs.
+	2. Update ldap client config.
+	3. Modify Name Service Switch config (NSS).
+	4. Start ldap client services.
+	5. Verify configuration.
+
+1. Install ldap client RPMs.
+Two Linux LDAP clients are used within Macquarie data centres:
+	NSLCD: Name Service Local Cache Daemon. (RHEL6)	https://linux.die.net/man/8/nslcd
+	SSSD: System Security Services Daemon. (RHEL7)	https://linux.die.net/man/8/sssd
+The NSLCD daemon requires the openldap client and related pam modules for ldap
+	yum install -y openldap-clients nss-pam-ldapd
+	#install ldap libraries for python so the command line query tool ldaplist can be used
+	yum install -y python-ldap.x86_64 ## rhel7
+	yum install -y python27-ldap.x86_64  ## rhel6
