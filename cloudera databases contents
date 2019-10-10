@@ -58,5 +58,188 @@ database in RDS:
 | ids_to_delete_1568766742112   |
 +-------------------------------+
 
++--------------------------------+
+| Tables_in_scm                  |
++--------------------------------+
+| AUDITS                         |
+| CLIENT_CONFIGS                 |
+| CLIENT_CONFIGS_TO_HOSTS        |
+| CLUSTERS                       |
+| CLUSTERS_AUD                   |
+| CLUSTER_ACTIVATED_RELEASES     |
+| CLUSTER_ACTIVATED_RELEASES_AUD |
+| CLUSTER_MANAGED_RELEASES       |
+| CLUSTER_UNDISTRIBUTED_RELEASES |
+| CM_PEERS                       |
+| CM_VERSION                     |
+| COMMANDS                       |
+| COMMANDS_DETAIL                |
+| COMMAND_SCHEDULES              |
+| CONFIGS                        |
+| CONFIGS_AUD                    |
+| CONFIG_CONTAINERS              |
+| CREDENTIALS                    |
+| DIAGNOSTICS_EVENTS             |
+| EXTERNAL_ACCOUNTS              |
+| EXTERNAL_ACCOUNTS_AUD          |
+| GLOBAL_SETTINGS                |
+| HOSTS                          |
+| HOSTS_AUD                      |
+| HOST_TEMPLATES                 |
+| HOST_TEMPLATE_TO_ROLE_CONF_GRP |
+| METRICS                        |
+| PARCELS                        |
+| PARCEL_COMPONENTS              |
+| PROCESSES                      |
+| PROCESSES_DETAIL               |
+| PROCESS_ACTIVE_RELEASES        |
+| RELEASES                       |
+| RELEASES_AUD                   |
+| REVISIONS                      |
+| ROLES                          |
+| ROLES_AUD                      |
+| ROLE_CONFIG_GROUPS             |
+| ROLE_CONFIG_GROUPS_AUD         |
+| ROLE_STALENESS_STATUS          |
+| SCHEMA_VERSION                 |
+| SERVICES                       |
+| SERVICES_AUD                   |
+| SNAPSHOT_POLICIES              |
+| USERS                          |
+| USER_ROLES                     |
+| USER_SETTINGS                  |
++--------------------------------+
+
++------------------------+
+| Tables_in_oozie        |
++------------------------+
+| BUNDLE_ACTIONS         |
+| BUNDLE_JOBS            |
+| COORD_ACTIONS          |
+| COORD_JOBS             |
+| OOZIE_SYS              |
+| OPENJPA_SEQUENCE_TABLE |
+| SLA_EVENTS             |
+| SLA_REGISTRATION       |
+| SLA_SUMMARY            |
+| VALIDATE_CONN          |
+| WF_ACTIONS             |
+| WF_JOBS                |
++------------------------+
+
++--------------------------------+
+| Tables_in_hue                  |
++--------------------------------+
+| auth_group                     |
+| auth_group_permissions         |
+| auth_permission                |
+| auth_user                      |
+| auth_user_groups               |
+| auth_user_user_permissions     |
+| axes_accessattempt             |
+| axes_accesslog                 |
+| beeswax_metainstall            |
+| beeswax_queryhistory           |
+| beeswax_savedquery             |
+| beeswax_session                |
+| defaultconfiguration_groups    |
+| desktop_defaultconfiguration   |
+| desktop_document               |
+| desktop_document2              |
+| desktop_document2_dependencies |
+| desktop_document2permission    |
+| desktop_document_tags          |
+| desktop_documentpermission     |
+| desktop_documenttag            |
+| desktop_settings               |
+| desktop_userpreferences        |
+| django_admin_log               |
+| django_content_type            |
+| django_openid_auth_association |
+| django_openid_auth_nonce       |
+| django_openid_auth_useropenid  |
+| django_session                 |
+| django_site                    |
+| documentpermission2_groups     |
+| documentpermission2_users      |
+| documentpermission_groups      |
+| documentpermission_users       |
+| jobsub_checkforsetup           |
+| jobsub_jobdesign               |
+| jobsub_jobhistory              |
+| jobsub_oozieaction             |
+| jobsub_ooziedesign             |
+| jobsub_ooziejavaaction         |
+| jobsub_ooziemapreduceaction    |
+| jobsub_ooziestreamingaction    |
+| oozie_bundle                   |
+| oozie_bundledcoordinator       |
+| oozie_coordinator              |
+| oozie_datainput                |
+| oozie_dataoutput               |
+| oozie_dataset                  |
+| oozie_decision                 |
+| oozie_decisionend              |
+| oozie_distcp                   |
+| oozie_email                    |
+| oozie_end                      |
+| oozie_fork                     |
+| oozie_fs                       |
+| oozie_generic                  |
+| oozie_history                  |
+| oozie_hive                     |
+| oozie_java                     |
+| oozie_job                      |
+| oozie_join                     |
+| oozie_kill                     |
+| oozie_link                     |
+| oozie_mapreduce                |
+| oozie_node                     |
+| oozie_pig                      |
+| oozie_shell                    |
+| oozie_sqoop                    |
+| oozie_ssh                      |
+| oozie_start                    |
+| oozie_streaming                |
+| oozie_subworkflow              |
+| oozie_workflow                 |
+| pig_document                   |
+| pig_pigscript                  |
+| south_migrationhistory         |
+| useradmin_grouppermission      |
+| useradmin_huepermission        |
+| useradmin_ldapgroup            |
+| useradmin_userprofile          |
++--------------------------------+
 
 
++------------------------------+
+| Tables_in_sentry             |
++------------------------------+
+| AUTHZ_PATH                   |
+| AUTHZ_PATHS_MAPPING          |
+| AUTHZ_PATHS_SNAPSHOT_ID      |
+| SENTRY_DB_PRIVILEGE          |
+| SENTRY_GM_PRIVILEGE          |
+| SENTRY_GROUP                 |
+| SENTRY_HMS_NOTIFICATION_ID   |
+| SENTRY_PATH_CHANGE           |
+| SENTRY_PERM_CHANGE           |
+| SENTRY_ROLE                  |
+| SENTRY_ROLE_DB_PRIVILEGE_MAP |
+| SENTRY_ROLE_GM_PRIVILEGE_MAP |
+| SENTRY_ROLE_GROUP_MAP        |
+| SENTRY_USER                  |
+| SENTRY_USER_DB_PRIVILEGE_MAP |
+| SENTRY_VERSION               |
+| SEQUENCE_TABLE               |
++------------------------------+
+
++------------------------+
+| Tables_in_rman         |
++------------------------+
+| RMAN_SCHEMA_VERSION    |
+| RMAN_USERGROUPHISTORY  |
+| RMAN_WATCHEDDIR        |
+| RMAN_WATCHEDDIRHISTORY |
++------------------------+
