@@ -18,3 +18,85 @@ The NSLCD daemon requires the openldap client and related pam modules for ldap
 	#install ldap libraries for python so the command line query tool ldaplist can be used
 	yum install -y python-ldap.x86_64 ## rhel7
 	yum install -y python27-ldap.x86_64  ## rhel6
+
+	
+2. Update ldap client config.
+configured to enable the LDAP client to successfully search the LDAP DIT
+	/etc/nslcd.conf
+	/etc/pam_ldap.conf
+	/etc/openldap/ldap.conf
+
+Key information configured in /etc/nslcd.conf & /etc/pam_ldap.conf
+	LDAP servers to bind to connect to (DPS servers in this case).
+	Base DIT DN to search.
+	Mapping between UNIX naming service database names and LDAP DNs. e.g. passwd and shadow databases
+	CA cert location to enable SSL connectivity.
+	Bind account and password.
+
+Key information configured in /etc/openldap/ldap.conf file enables command line tools such as ldaplist and ldapsearch	
+	LDAP servers to bind to connect to (DPS servers in this case).
+	Base DIT DN to search.
+	CA cert location to enable SSL connectivity.
+
+config examples:
+
+/etc/nslcd.conf
+	uid root
+	gid root
+	uri ldaps://xxxxxxx/
+	base ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	tls_cacertdir /etc/pki/tls/certs
+	binddn  cn=__BINDACCOUNT__,ou=applicationAccounts,dc=hwd,dc=organisation_name,dc=com
+	bindpw __SECRET__
+	nss_initgroups_ignoreusers root
+	timelimit 30
+	idle_timelimit 3600
+	scope one
+	base passwd             ou=People,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base shadow             ou=People,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base group              ou=Group,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base hosts              ou=Hosts,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base services           ou=Services,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base networks           ou=Networks,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base protocols          ou=Protocols,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base rpc                ou=Rpc,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base ethers             ou=Ethers,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base netmasks           ou=Networks,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=come
+	base bootparams         ou=Ethers,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base aliases            ou=Aliases,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	base netgroup           ou=Netgroup,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	ssl on
+
+/etc/pam_ldap.conf
+	uri ldaps://xxxxxxx/
+	binddn cn=__BINDACCOUNT__,ou=applicationAccounts,dc=hwd,dc=organisation_name,dc=com
+	bindpw __SECRET__
+	base ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	ldap_version 3
+	scope one
+	timelimit 5
+	bind_timelimit 5
+	bind_policy soft
+	idle_timelimit 300
+	pam_filter objectclass=posixAccount
+	pam_login_attribute uid
+	pam_password md5
+	nss_base_passwd         ou=People,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_base_shadow         ou=People,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_base_group          ou=Group,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_base_hosts          ou=Hosts,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_base_services       ou=Services,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_base_networks       ou=Networks,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_base_protocols      ou=Protocols,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_base_netgroup       ou=Netgroup,ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com?one
+	nss_initgroups_ignoreusers root,ldap,named,avahi,haldaemon
+	#ssl start_tls
+	ssl on
+	tls_cacertdir /etc/pki/tls/certs
+	nss_getgrent_skipmembers no
+	
+/etc/openldap/ldap.conf
+	BASE ou=unix,ou=internal,dc=hwd,dc=organisation_name,dc=com
+	URI ldaps://xxxxxxx/
+	TLS_CACERTDIR /etc/pki/tls/certs
+	NETWORK_TIMEOUT 5
