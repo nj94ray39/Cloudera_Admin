@@ -1,0 +1,12 @@
+Block the external applications from accessing the Hive metastore:
+
+In the Cloudera Manager Admin Console, select the Hive service.
+On the Hive service page, click the Configuration tab.
+In the search well on the right half of the Configuration page, search for Hive Metastore Access Control and Proxy User Groups Override to locate the hadoop.proxyuser.hive.groups parameter and click the plus sign.
+Enter hive into the text box and click the plus sign again.
+Enter hue into the text box.
+Enter sentry into the text box.
+Click Save Changes.
+Setting this parameter blocks access to the Hive metastore for non-service users. This effectively disables Hive CLI, Spark, and Sqoop applications from interacting with the Hive service. These application will still run, but after setting this parameter as described here, they will no longer be able to access the Hive metastore and all Hive queries will fail. Users running these tools must be part of the hive, hue, or sentry groups to access the Hive service. To allow greater access, additional user groups must be added to the proxy list.
+
+[1] https://docs.cloudera.com/documentation/enterprise/5-16-x/topics/sg_sentry_service_config.html#concept_wjm_qxm_vq
